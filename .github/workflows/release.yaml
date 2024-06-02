@@ -26,8 +26,8 @@ jobs:
 
       - name: Combine ZIP
         run: |
-          cd ${{ github.workspace }}/custom_components/flist
-          zip flist.zip -r ./
+          cd ${{ github.workspace }}/custom_components/flitsmeister
+          zip flitsmeister.zip -r ./
 
       - name: Get release
         id: get_release
@@ -42,6 +42,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.get_release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/custom_components/flist/flist.zip
-          asset_name: flist.zip
+          asset_path: ${{ github.workspace }}/custom_components/flitsmeister/flitsmeister.zip
+          asset_name: flitsmeister.zip
           asset_content_type: application/zip
