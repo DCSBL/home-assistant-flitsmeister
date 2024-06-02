@@ -1,0 +1,13 @@
+{
+  "domain": "flitsmeister",
+  "name": "Flitsmeister",
+  "config_flow": true,
+  "codeowners": ["@DCSBL"],
+  "documentation": "https://github.com/DCSBL/home-assistant-flitsmeister",
+  "issue_tracker": "https://github.com/DCSBL/home-assistant-flitsmeister/issues",
+  "iot_class": "cloud_polling",
+  "requirements": [
+    "python-fm==1.0.0b1"
+  ],
+  "version": "0.0.0"
+}

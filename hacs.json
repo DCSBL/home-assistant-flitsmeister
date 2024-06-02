@@ -1,0 +1,9 @@
+{
+	"name": "Flitsmeister",
+	"country": "NL",
+	"domains": "sensor",
+	"render_readme": false,
+	"homeassistant": "2024.5.0",
+	"zip_release": true,
+	"filename": "flitsmeister.zip"
+}
