@@ -1,4 +1,4 @@
-"""Config flow for Picnic integration."""
+"""Config flow for Flitsmeister integration."""
 from __future__ import annotations
 
 import logging
@@ -10,6 +10,7 @@ from homeassistant import config_entries
 from homeassistant.const import (
     CONF_ACCESS_TOKEN,
     CONF_TOKEN,
+    CONF_UNIQUE_ID,
     CONF_PASSWORD,
     CONF_TOKEN,
     CONF_USERNAME,
@@ -58,6 +59,7 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
         data = {
             CONF_USERNAME: user_input[CONF_USERNAME],
+            CONF_UNIQUE_ID: auth.object_id,
             CONF_ACCESS_TOKEN: auth.access_token,
             CONF_TOKEN: auth.session_token,
         }
@@ -74,7 +76,7 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
             return self.async_abort(reason="reauth_successful")
 
-        await self.async_set_unique_id(user_input[CONF_USERNAME])
+        await self.async_set_unique_id(data[CONF_UNIQUE_ID])
         self._abort_if_unique_id_configured()
 
         return await self._async_create_entry(data)
