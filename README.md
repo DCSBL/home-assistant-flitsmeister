@@ -1,4 +1,4 @@
-# Flitsmeiser in Home Assistant
+# Flitsmeister in Home Assistant
 
 Nothing much to tell yet, but it is a start!
 1. Add this repo to HACS.
