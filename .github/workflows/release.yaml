@@ -6,6 +6,9 @@ name: Release
 on:
   release:
     types: [published]
+    
+permissions:
+  contents: write
 
 jobs:
   release_zip_file:
@@ -29,19 +32,9 @@ jobs:
           cd ${{ github.workspace }}/custom_components/flitsmeister
           zip flitsmeister.zip -r ./
 
-      - name: Get release
-        id: get_release
-        uses: bruceadams/get-release@v1.3.2
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-
       - name: Upload Release Asset
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: svenstaro/upload-release-action@v2
         with:
-          upload_url: ${{ steps.get_release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/custom_components/flitsmeister/flitsmeister.zip
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ${{ github.workspace }}/custom_components/flitsmeister/flitsmeister.zip
           asset_name: flitsmeister.zip
-          asset_content_type: application/zip
