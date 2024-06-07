@@ -82,7 +82,7 @@ SENSOR_TYPES: tuple[FMSensorEntityDescription, ...] = (
         suggested_display_precision=0,
         state_class=SensorStateClass.TOTAL_INCREASING,
         value_fn=lambda data: data[DATA_STATISTICS].times_in_traffic,
-        icon="mdi:car",
+        icon="mdi:car-multiple",
     ),
     FMSensorEntityDescription(
         key="top_100_sprint_ms",
@@ -91,9 +91,9 @@ SENSOR_TYPES: tuple[FMSensorEntityDescription, ...] = (
         suggested_display_precision=0,
         state_class=SensorStateClass.MEASUREMENT,
         value_fn=lambda data: data[DATA_STATISTICS].top_100_sprint_ms,
-        icon="mdi:car",
+        icon="mdi:flag-checkered",
+        device_class=SensorDeviceClass.DURATION,
     ),    
-
     FMSensorEntityDescription(
         key="top_consecutive_days",
         name="Top consecutive days",
