@@ -16,9 +16,10 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import (
     CURRENCY_EURO,
     UnitOfEnergy,
-    UnitOfVolume,
     UnitOfLength,
     UnitOfSpeed,
+    UnitOfTime,
+    UnitOfVolume,
 )
 from homeassistant.core import HassJob, HomeAssistant
 from homeassistant.helpers import event
@@ -69,8 +70,9 @@ SENSOR_TYPES: tuple[FMSensorEntityDescription, ...] = (
     FMSensorEntityDescription(
         key="sec_driven",
         name="Time driven",
-        native_unit_of_measurement="s",
+        native_unit_of_measurement=UnitOfTime.SECONDS,
         suggested_display_precision=0,
+        suggested_unit_of_measurement=UnitOfTime.HOURS,
         state_class=SensorStateClass.TOTAL_INCREASING,
         value_fn=lambda data: data[DATA_STATISTICS].sec_driven,
         device_class=SensorDeviceClass.DURATION,
@@ -87,8 +89,9 @@ SENSOR_TYPES: tuple[FMSensorEntityDescription, ...] = (
     FMSensorEntityDescription(
         key="top_100_sprint_ms",
         name="Top 100 sprint",
-        native_unit_of_measurement="ms",
+        native_unit_of_measurement=UnitOfTime.MILLISECONDS,
         suggested_display_precision=0,
+        suggested_unit_of_measurement=UnitOfTime.SECONDS,
         state_class=SensorStateClass.MEASUREMENT,
         value_fn=lambda data: data[DATA_STATISTICS].top_100_sprint_ms,
         icon="mdi:flag-checkered",
