@@ -16,9 +16,10 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import (
     CURRENCY_EURO,
     UnitOfEnergy,
-    UnitOfVolume,
     UnitOfLength,
     UnitOfSpeed,
+    UnitOfTime,
+    UnitOfVolume,
 )
 from homeassistant.core import HassJob, HomeAssistant
 from homeassistant.helpers import event
@@ -49,7 +50,7 @@ class FMSensorEntityDescription(SensorEntityDescription):
 
 SENSOR_TYPES: tuple[FMSensorEntityDescription, ...] = (
     FMSensorEntityDescription(
-        key="km_driven",
+        key="distance_driven",
         name="Distance driven",
         native_unit_of_measurement=UnitOfLength.KILOMETERS,
         suggested_display_precision=0,
@@ -67,10 +68,11 @@ SENSOR_TYPES: tuple[FMSensorEntityDescription, ...] = (
         icon="mdi:cash-check",
     ),
     FMSensorEntityDescription(
-        key="sec_driven",
+        key="time_driven",
         name="Time driven",
-        native_unit_of_measurement="s",
-        suggested_display_precision=0,
+        native_unit_of_measurement=UnitOfTime.SECONDS,
+        suggested_display_precision=2,
+        suggested_unit_of_measurement=UnitOfTime.HOURS,
         state_class=SensorStateClass.TOTAL_INCREASING,
         value_fn=lambda data: data[DATA_STATISTICS].sec_driven,
         device_class=SensorDeviceClass.DURATION,
@@ -85,10 +87,11 @@ SENSOR_TYPES: tuple[FMSensorEntityDescription, ...] = (
         icon="mdi:car-multiple",
     ),
     FMSensorEntityDescription(
-        key="top_100_sprint_ms",
+        key="top_100_sprint",
         name="Top 100 sprint",
-        native_unit_of_measurement="ms",
-        suggested_display_precision=0,
+        native_unit_of_measurement=UnitOfTime.MILLISECONDS,
+        suggested_display_precision=3,
+        suggested_unit_of_measurement=UnitOfTime.SECONDS,
         state_class=SensorStateClass.MEASUREMENT,
         value_fn=lambda data: data[DATA_STATISTICS].top_100_sprint_ms,
         icon="mdi:flag-checkered",
